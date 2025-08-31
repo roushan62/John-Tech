@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOHN TECH ENGINEERS - Professional vCard</title>
+    <!-- Use Tailwind CSS for a modern, responsive layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff6b35;
+            --secondary-color: #f7931e;
+            --dark-bg: #1a1a2e;
+            --darker-bg: #16213e;
+            --card-bg: #2c3e50;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            transition: all 0.3s ease-in-out;
+            min-height: 100vh;
+        }
+
+        /* Custom QR Code Modal styles */
+        .modal-content {
+            background-color: var(--card-bg);
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-title {
+            color: var(--primary-color);
+        }
+
+        /* Custom alert box */
+        #custom-alert-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: none;
+        }
+
+        .custom-alert {
+            background-color: rgba(44, 62, 80, 0.9);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            backdrop-filter: blur(5px);
+            animation: slideInUp 0.3s forwards, fadeOut 3s 2s forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px) translateX(-50%);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) translateX(-50%);
+            }
+        }
+        
+        /* Enhanced card styling */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Gradient text animation */
+        .gradient-text {
+            background: linear-gradient(90deg, #ff6b35, #f7931e, #ff6b35);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s linear infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Subtle pulse animation for CTA buttons */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Improved responsive behavior */
+        @media (max-width: 768px) {
+            .profile-img-container {
+                margin: 0 auto 1.5rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .action-buttons button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 flex items-center justify-center">
+
+    <div class="max-w-4xl mx-auto space-y-8 my-8 w-full">
+
+        <!-- Header Section -->
+        <header class="bg-gray-800 p-8 rounded-3xl shadow-xl flex flex-col md:flex-row items-center justify-center text-center md:text-left transition-all duration-300 card-hover">
+            <div class="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center overflow-hidden flex-shrink-0 mb-4 md:mb-0 md:mr-6 shadow-lg border-4 border-gray-700">
+                <!-- Replace this placeholder URL with your company logo's direct image URL -->
+                <img src="logo.png" alt="Company Logo" class="w-full h-full object-cover">
+            </div>
+            <div>
+                <h1 class="font-extrabold text-3xl sm:text-4xl gradient-text mb-2 tracking-wide">JOHN TECH ENGINEERS</h1>
+                <p class="text-gray-400 text-sm sm:text-base font-medium">Professional Industrial Solutions</p>
+                <p class="text-gray-400 text-sm sm:text-base font-medium">quality is the best business plan forever</p>
+            </div>
+        </header>
+
+        <!-- Profile & Contact Section -->
+        <section class="bg-gray-800 p-8 rounded-3xl shadow-xl flex flex-col md:flex-row items-center gap-8 transition-all duration-300 card-hover">
+            <div class="profile-img-container flex-shrink-0 w-32 h-32 sm:w-48 sm:h-48 rounded-full bg-gradient-to-br from-orange-500 to-amber-400 flex items-center justify-center overflow-hidden shadow-lg border-4 border-gray-700">
+                <!-- Replace this placeholder URL with your profile picture's direct image URL -->
+                <img src="Profile pic Lalin Gupta.png" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-grow text-center md:text-left">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-orange-400 mb-1">LALIN KUMAR GUPTA</h2>
+                <h3 class="text-lg text-gray-400 font-semibold mb-4">PROPRIETOR</h3>
+                <p class="text-gray-300 mb-6 leading-relaxed text-sm sm:text-base">
+                    Leading industrial engineering solutions with over 5+ years of experience in Scaffolding Supply and Services, Scaffolding Rental, Erection & Fabrication, Roof Sheeting, Cold & Hot Insulation, Manpower Supply, Painting, Transport and efficient engineering solutions.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <a href="tel:+919876543210" class="flex items-center gap-3 p-3 bg-gray-700 rounded-xl hover:bg-orange-500 transition-colors duration-300" target="_blank">
+                        <i class="fas fa-phone text-orange-400"></i>
+                        <span class="text-sm font-medium">+91 9898526436</span>
+                        <span class="text-sm font-medium">+91 9875021497</span>
+                    </a>
+                    <a href="mailto:johntechengineers@gmail.com" class="flex items-center gap-3 p-3 bg-gray-700 rounded-xl hover:bg-orange-500 transition-colors duration-300" target="_blank">
+                        <i class="fas fa-envelope text-orange-400"></i>
+                        <span class="text-sm font-medium">johntechengineers@gmail.com</span>
+                    </a>
+                    <a href="https://www.johntechengineers.com" class="flex items-center gap-3 p-3 bg-gray-700 rounded-xl hover:bg-orange-500 transition-colors duration-300" target="_blank">
+                        <i class="fas fa-globe text-orange-400"></i>
+                        <span class="text-sm font-medium">www.johntechengineers.com</span>
+                    </a>
+                    <a href="https://maps.google.com/?q=John Tech Engineers: Scaffolding & Fabrication work, Sayan, Shop No.116,Maruti Plaza,Sayan-Sugar Road,Sayan, Olpad, Surat, Gujarat 394130" class="flex items-center gap-3 p-3 bg-gray-700 rounded-xl hover:bg-orange-500 transition-colors duration-300" target="_blank">
+                        <i class="fas fa-map-marker-alt text-orange-400"></i>
+                        <span class="text-sm font-medium">View on Map</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business Hours & Social Media -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Business Hours -->
+            <section class="bg-gray-800 p-8 rounded-3xl shadow-xl transition-all duration-300 card-hover">
+                <h2 class="text-xl font-bold text-orange-400 text-center mb-6">Business Hours</h2>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center p-4 bg-gray-700 rounded-xl border-l-4 border-orange-500">
+                        <span class="font-medium text-gray-300">Monday - Friday</span>
+                        <span class="font-semibold text-white">9:00 AM - 6:00 PM</span>
+                    </div>
+                    <div class="flex justify-between items-center p-4 bg-gray-700 rounded-xl border-l-4 border-orange-500">
+                        <span class="font-medium text-gray-300">Saturday</span>
+                        <span class="font-semibold text-white">9:00 AM - 2:00 PM</span>
+                    </div>
+                    <div class="flex justify-between items-center p-4 bg-gray-700 rounded-xl border-l-4 border-orange-500">
+                        <span class="font-medium text-gray-300">Sunday</span>
+                        <span class="font-semibold text-red-400">Closed</span>
+                    </div>
+                    <div class="flex justify-between items-center p-4 bg-gray-700 rounded-xl border-l-4 border-orange-500">
+                        <span class="font-medium text-gray-300">Emergency Service</span>
+                        <span class="font-semibold text-green-400">24/7 Available</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social Media -->
+            <section class="bg-gray-800 p-8 rounded-3xl shadow-xl transition-all duration-300 card-hover">
+                <h2 class="text-xl font-bold text-orange-400 text-center mb-6">Connect With Us</h2>
+                <div class="flex justify-center flex-wrap gap-4">
+                    <a href="https://facebook.com/johntechengineers" target="_blank" class="w-14 h-14 rounded-full bg-blue-700 hover:bg-blue-600 transition-colors duration-300 flex items-center justify-center shadow-lg transform hover:scale-110">
+                        <i class="fab fa-facebook-f text-2xl"></i>
+                    </a>
+                    <a href="https://twitter.com/johntecheng" target="_blank" class="w-14 h-14 rounded-full bg-sky-500 hover:bg-sky-400 transition-colors duration-300 flex items-center justify-center shadow-lg transform hover:scale-110">
+                        <i class="fab fa-twitter text-2xl"></i>
+                    </a>
+                    <a href="https://instagram.com/johntechengineers" target="_blank" class="w-14 h-14 rounded-full bg-pink-600 hover:bg-pink-500 transition-colors duration-300 flex items-center justify-center shadow-lg transform hover:scale-110">
+                        <i class="fab fa-instagram text-2xl"></i>
+                    </a>
+                    <a href="https://linkedin.com/company/john-tech-engineers" target="_blank" class="w-14 h-14 rounded-full bg-blue-800 hover:bg-blue-700 transition-colors duration-300 flex items-center justify-center shadow-lg transform hover:scale-110">
+                        <i class="fab fa-linkedin-in text-2xl"></i>
+                    </a>
+                    <a href="https://wa.me/9875021497" target="_blank" class="w-14 h-14 rounded-full bg-green-500 hover:bg-green-400 transition-colors duration-300 flex items-center justify-center shadow-lg transform hover:scale-110 pulse-animation">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                    <a href="https://g.page/https://www.google.com/search?q=John+Tech+Engineers:+Scaffolding+%26+Fabrication+work,+Sayan&stick=H4sIAAAAAAAA_-NgU1I1qDBOSjUwsTS2MDMxSE5MSrS0MqhIszAzSkpKtrAwT7VISkmzXMRq5ZWfkacQkpqcoeCal56Zl5paVGylEJycmJaWn5OSmZeuoKbglphUlJmcWJKZn6dQnl-UraMQnFiZmAcAL5sm1mYAAAA&hl=en&mat=CeVJTrDSWi7_ElcBYJahaSetgQcQzIY8omDcwt5UAsrL3F53lLyzBOeLMJs32o5IMmvdyLWTFlI1ehPiciwBu-RGOTIoBwfciNh_OYzXZRW2GJymt8pUgWoVRsNCyzS0xdk&authuser=0" target="_blank" 
+   class="w-14 h-14 rounded-full bg-red-600 hover:bg-red-500 transition-colors duration-300 flex items-center justify-center shadow-lg transform hover:scale-110"
+   aria-label="Google Business">
+    <i class="fab fa-google text-2xl text-white"></i>
+</a>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Additional Details Section (Initially Hidden) -->
+        <section id="detailsSection" class="bg-gray-800 p-8 rounded-3xl shadow-xl transition-all duration-300 card-hover hidden">
+            <h2 class="text-xl font-bold text-orange-400 text-center mb-6">Services</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="p-4 bg-gray-700 rounded-xl text-center card-hover">
+                    <i class="fas fa-tools text-2xl text-orange-400 mb-2"></i>
+                    <h3 class="font-bold">Scaffolding Supply & Services</h3>
+                    <p class="text-sm text-gray-400">Quality material supply, safe assembly, dismantling</p>
+                </div>
+                <div class="p-4 bg-gray-700 rounded-xl text-center card-hover">
+                    <i class="fas fa-robot text-2xl text-orange-400 mb-2"></i>
+                    <h3 class="font-bold">Scaffolding Rental</h3>
+                    <p class="text-sm text-gray-400">Flexible rental solutions for industrial & construction projects</p>
+                </div>
+                <div class="p-4 bg-gray-700 rounded-xl text-center card-hover">
+                    <i class="fas fa-project-diagram text-2xl text-orange-400 mb-2"></i>
+                    <h3 class="font-bold">Erection & Fabrication</h3>
+                    <p class="text-sm text-gray-400">Structural fabrication, erection & heavy steel works</p>
+                </div>
+                <div class="p-4 bg-gray-700 rounded-xl text-center card-hover">
+                    <i class="fas fa-cogs text-2xl text-orange-400 mb-2"></i>
+                    <h3 class="font-bold">Roof Sheeting</h3>
+                    <p class="text-sm text-gray-400">Industrial & commercial roofing installation and maintenance</p>
+                </div>
+                <div class="p-4 bg-gray-700 rounded-xl text-center card-hover">
+                    <i class="fas fa-chart-line text-2xl text-orange-400 mb-2"></i>
+                    <h3 class="font-bold">Cold & Hot Insulation</h3>
+                    <p class="text-sm text-gray-400">Energy-efficient thermal insulation solutions</p>
+                </div>
+                <div class="p-4 bg-gray-700 rounded-xl text-center card-hover">
+                    <i class="fas fa-lightbulb text-2xl text-orange-400 mb-2"></i>
+                    <h3 class="font-bold">Manpower Supply</h3>
+                    <p class="text-sm text-gray-400">Skilled, semi-skilled & unskilled workforce on demand</p>
+                </div>
+                <div class="p-4 bg-gray-700 rounded-xl text-center card-hover">
+                    <i class="fas fa-lightbulb text-2xl text-orange-400 mb-2"></i>
+                    <h3 class="font-bold">Painting</h3>
+                    <p class="text-sm text-gray-400">Industrial, commercial & protective coating services</p>
+                </div>
+                <div class="p-4 bg-gray-700 rounded-xl text-center card-hover">
+                    <i class="fas fa-lightbulb text-2xl text-orange-400 mb-2"></i>
+                    <h3 class="font-bold">Transport</h3>
+                    <p class="text-sm text-gray-400">Reliable logistics & heavy material movement support</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons flex flex-col sm:flex-row justify-center gap-4">
+            <button id="viewDetailsBtn" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-4 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2">
+                <i class="fas fa-info-circle"></i>
+                Show Details
+            </button>
+            <button id="downloadBtn" class="bg-green-600 hover:bg-green-500 text-white font-bold py-4 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 pulse-animation">
+                <i class="fas fa-download"></i>
+                Download vCard
+            </button>
+            <button id="qrBtn" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-4 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2">
+                <i class="fas fa-qrcode"></i>
+                Show QR Code
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 text-sm mt-8 border-t border-gray-700 pt-4">
+            <p>&copy; 2025 John Tech Engineers. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <!-- QR Code Modal -->
+    <div id="qrModal" class="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="modal-content p-8 max-w-sm w-full mx-4">
+            <div class="flex justify-end">
+                <button id="closeModalBtn" class="text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
+            </div>
+            <h2 class="text-2xl font-bold modal-title text-center mb-6">Scan to Save Contact</h2>
+            <div id="qrcode" class="flex justify-center p-4 bg-white rounded-lg shadow-inner mb-6"></div>
+            <p class="text-center text-gray-300">Scan this code with your phone's camera to save Lalin's contact information instantly.</p>
+        </div>
+    </div>
+    
+    <!-- Custom Alert Container -->
+    <div id="custom-alert-container"></div>
+
+    <!-- QR Code Library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+    <script>
+        // Custom Alert Function
+        function showCustomAlert(message) {
+            const container = document.getElementById('custom-alert-container');
+            const alertBox = document.createElement('div');
+            alertBox.className = 'custom-alert';
+            alertBox.textContent = message;
+            container.appendChild(alertBox);
+            container.style.display = 'block';
+
+            setTimeout(() => {
+                alertBox.remove();
+                if (container.children.length === 0) {
+                    container.style.display = 'none';
+                }
+            }, 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const downloadBtn = document.getElementById('downloadBtn');
+            const qrBtn = document.getElementById('qrBtn');
+            const qrModal = document.getElementById('qrModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const qrcodeDiv = document.getElementById('qrcode');
+            const detailsSection = document.getElementById('detailsSection');
+            const viewDetailsBtn = document.getElementById('viewDetailsBtn');
+            const viewDetailsIcon = viewDetailsBtn.querySelector('i');
+
+            const vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:Lalin Kumar Gupta\nORG:John Tech Engineers\nTITLE:Proprietor\nTEL:+919876543210\nEMAIL:info@johntechengineers.com\nURL:www.johntechengineers.com\nADR:;;Industrial Area, Sector 15;New Delhi;;110025;India\nNOTE:Leading industrial engineering solutions with over 15 years of experience in mechanical design, automation, and project management.\\nSpecializations:\\n- Mechanical Design & CAD Modeling\\n- Industrial Automation Systems\\n- Project Management & Consulting\\n- Quality Control & Testing\\n- Manufacturing Process Optimization\\nEND:VCARD`;
+
+            // Download vCard
+            downloadBtn.addEventListener('click', () => {
+                const blob = new Blob([vCardData], { type: 'text/vcard' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Lalin_Kumar_Gupta_JTE.vcf';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+                showCustomAlert('vCard downloaded successfully!');
+            });
+
+            // Show QR Code Modal
+            qrBtn.addEventListener('click', () => {
+                qrcodeDiv.innerHTML = '';
+                new QRCode(qrcodeDiv, {
+                    text: vCardData,
+                    width: 200,
+                    height: 200,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                qrModal.classList.remove('hidden');
+            });
+
+            // Close QR Code Modal
+            closeModalBtn.addEventListener('click', () => {
+                qrModal.classList.add('hidden');
+            });
+
+            qrModal.addEventListener('click', (event) => {
+                if (event.target === qrModal) {
+                    qrModal.classList.add('hidden');
+                }
+            });
+            
+            // Toggle Details Section
+            viewDetailsBtn.addEventListener('click', () => {
+                detailsSection.classList.toggle('hidden');
+                const isHidden = detailsSection.classList.contains('hidden');
+                viewDetailsBtn.innerHTML = isHidden
+                    ? '<i class="fas fa-info-circle"></i> Show Details'
+                    : '<i class="fas fa-times-circle"></i> Hide Details';
+            });
+        });
+    </script>
+</body>
+</html>
